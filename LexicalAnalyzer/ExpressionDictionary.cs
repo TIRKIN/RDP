@@ -13,7 +13,7 @@ namespace LexicalAnalyzer
 
         private void Init()
         {
-            Add(typeof(Float), "");
+            Add(typeof(Float), "^([0-9][0-9]*)?(\\.[0-9]+)+([eE][+-]?[0-9]+)?");
             Add(typeof(Integer), "^(?<=\\s|^)\\d+(?=\\s|$|[^.e])");
         }
     }

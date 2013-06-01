@@ -1,24 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LexicalAnalyzer.Token;
+﻿using LexicalAnalyzer.Token;
 
 namespace LexicalAnalyzer
 {
     public class LexicalScanner
     {
-        private string _input;
+        private readonly string _input;
+        private ExpressionDictionary _dictionary;
 
-        public LexicalScanner(string Input)
+        public LexicalScanner(string input)
         {
-            _input = Input;
+            _input = input;
+            _dictionary = new ExpressionDictionary();
+        }
+
+        public string Input
+        {
+            get { return _input; }
         }
 
         public AbstractToken GetNextToken()
         {
-
+            return new Number("1");
         }
     }
 }

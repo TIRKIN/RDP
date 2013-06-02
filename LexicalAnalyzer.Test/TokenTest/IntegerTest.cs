@@ -21,7 +21,7 @@ namespace LexicalAnalyzer.Test.TokenTest
         }
 
         [Test]
-        public void OneDigit()
+        public void TestOneDigit()
         {
             Assert.IsTrue(Regex.Match("1", _dictionary[typeof(Integer)]).Success, "Should match number: 1");
             Assert.IsTrue(Regex.Match("2", _dictionary[typeof(Integer)]).Success, "Should match number: 2");
@@ -33,6 +33,12 @@ namespace LexicalAnalyzer.Test.TokenTest
             Assert.IsTrue(Regex.Match("8", _dictionary[typeof(Integer)]).Success, "Should match number: 8");
             Assert.IsTrue(Regex.Match("9", _dictionary[typeof(Integer)]).Success, "Should match number: 9");
             Assert.IsTrue(Regex.Match("0", _dictionary[typeof(Integer)]).Success, "Should match number: 0");
+        }
+
+        [Test]
+        public void TestOneDigitSpace()
+        {
+            Assert.IsTrue(Regex.Match(" 1", _dictionary[typeof(Integer)]).Success, "Should match number: 1");
         }
 
         [Test]

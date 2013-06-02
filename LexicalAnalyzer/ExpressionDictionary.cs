@@ -13,8 +13,13 @@ namespace LexicalAnalyzer
 
         private void Init()
         {
-            Add(typeof(Float), "^([0-9][0-9]*)?(\\.[0-9]+)+([eE][+-]?[0-9]+)?");
-            Add(typeof(Integer), "^(?<=\\s|^)\\d+(?=\\s|$|[^.e])");
+            Add(typeof(Float), "^\\s*([0-9][0-9]*)?(\\.[0-9]+)+([eE][+-]?[0-9]+)?");
+            Add(typeof(Integer), "^\\s*(?<=\\s|^)\\d+(?=\\s|$|[^.e])");
+            Add(typeof(AddSub), "^\\s*[+|-]");
+            Add(typeof(Operator), "^\\s*[*|\\|^]");
+            Add(typeof(OpenParenthesis), "^\\s*\\(");
+            Add(typeof(CloseParenthesis), "^\\s*\\)");
+            Add(typeof(Variable), "^\\s*[a-z]");
         }
     }
 }

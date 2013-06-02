@@ -39,14 +39,14 @@ namespace LexicalAnalyzer
                 {
                     _counter += match.Value.Length;
 
-                    AbstractToken token = (AbstractToken) Activator.CreateInstance(pair.Key, new object[] {match.Value}, null);
+                    AbstractToken token = (AbstractToken) Activator.CreateInstance(pair.Key, new object[] {match.Value.Trim()}, null);
 
                     return token;
                 }
             }
 
             // TODO: Add some good error messages
-            throw new Exception("Could not match input");
+            throw new Exception("Could not match character: " + _input[_counter] + " at position " + _counter);
         }
 
         /// <summary>
@@ -54,7 +54,19 @@ namespace LexicalAnalyzer
         /// </summary>
         public bool EndOfInput
         {
-            get { return (_counter >= (_input.Length - 1)); }
+            get { return (_counter >= (_input.Length)); }
+        }
+
+        public ICollection<AbstractToken> GetAllTokens()
+        {
+           List<AbstractToken> tokens = new List<AbstractToken>();
+
+            while (!EndOfInput)
+            {
+                tokens.Add(GetNextToken());
+            }
+
+            return tokens;
         }
     }
 }

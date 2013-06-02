@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace LexicalAnalyzer.Token
 {
-    public class Number : AbstractToken
+    public class OpenParenthesis : AbstractToken
     {
-        public Number(string Value) : base(Value)
-        {
-        }
+        public OpenParenthesis(String Value) :base(Value) { }
     }
 }

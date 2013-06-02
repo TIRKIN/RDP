@@ -9,6 +9,11 @@ namespace LexicalAnalyzer.Token
     public class AbstractToken
     {
 
+        public AbstractToken(String Value)
+        {
+            _value = Value;
+        }
+
         protected string _value;
 
         public String GetValue()

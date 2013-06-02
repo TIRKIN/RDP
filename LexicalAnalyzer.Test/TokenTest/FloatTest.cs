@@ -18,26 +18,27 @@ namespace LexicalAnalyzer.Test.TokenTest
         [Test]
         public void SingleDigit()
         {
-            Assert.IsTrue(Regex.Match("1.0", _dictionary[typeof(Float)]).Success, "Should match number: 1");
+            Assert.AreEqual("1.0", Regex.Match("1.0", _dictionary[typeof(Float)]).Value);
         }
 
         [Test]
         public void MultipleDigit()
         {
-            Assert.IsTrue(Regex.Match("1213.131230", _dictionary[typeof(Float)]).Success, "Should match number: 1");
+            Assert.AreEqual("1213.131230", Regex.Match("1213.131230", _dictionary[typeof(Float)]).Value);
         }
 
         [Test]
         public void ScientificNotation()
         {
-            Assert.IsTrue(Regex.Match("1.0e1", _dictionary[typeof(Float)]).Success, "Should match number: 1");
-            Assert.IsTrue(Regex.Match("1.0e-1", _dictionary[typeof(Float)]).Success, "Should match number: 1");
+            Assert.AreEqual("1.0e1", Regex.Match("1.0e1", _dictionary[typeof(Float)]).Value);
+            Assert.AreEqual("1.0e-1", Regex.Match("1.0e-1", _dictionary[typeof(Float)]).Value);
+            Assert.AreEqual("1.0e+1", Regex.Match("1.0e+1", _dictionary[typeof(Float)]).Value);
         }
 
         [Test]
         public void StartingDot()
         {
-            Assert.IsTrue(Regex.Match(".1", _dictionary[typeof(Float)]).Success, "Should match number: 1");
+            Assert.AreEqual(".1", Regex.Match(".1", _dictionary[typeof(Float)]).Value);
         }
 
         [Test]

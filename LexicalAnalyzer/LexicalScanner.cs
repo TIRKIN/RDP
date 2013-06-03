@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using LexicalAnalyzer.Token;
 
@@ -30,6 +31,7 @@ namespace LexicalAnalyzer
         /// <returns>Token</returns>
         public AbstractToken GetNextToken()
         {
+            // Loop through all tokens and check if they match the input string
             foreach (KeyValuePair<Type, string> pair in _dictionary)
             {
                 // TODO: See if substring does not impose a to harsh performance drop
@@ -39,14 +41,14 @@ namespace LexicalAnalyzer
                 {
                     _counter += match.Value.Length;
 
+                    // Create new instance of the specified type with the found value as parameter
                     AbstractToken token = (AbstractToken) Activator.CreateInstance(pair.Key, new object[] {match.Value.Trim()}, null);
 
                     return token;
                 }
             }
 
-            // TODO: Add some good error messages
-            throw new Exception("Could not match character: " + _input[_counter] + " at position " + _counter);
+            throw new MatchException(_input[_counter].ToString(CultureInfo.InvariantCulture), _counter);
         }
 
         /// <summary>

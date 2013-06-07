@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LexicalAnalyzer.Token
 {
     public class AbstractToken
     {
 
-        public AbstractToken(String Value)
+        public AbstractToken(String value)
         {
-            _value = Value;
+            Value = value;
         }
 
-        protected string _value;
+        protected string Value;
 
         public String GetValue()
         {
-            return _value;
+            return Value;
         }
     }
 }

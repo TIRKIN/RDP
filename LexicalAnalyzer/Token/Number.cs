@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LexicalAnalyzer.Token
+﻿namespace LexicalAnalyzer.Token
 {
     public class Number : AbstractToken
     {
-        public Number(string Value) : base(Value)
+        public Number(string value) : base(value)
         {
         }
     }

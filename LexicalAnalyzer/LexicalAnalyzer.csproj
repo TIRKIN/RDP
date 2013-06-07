@@ -44,6 +44,7 @@
     <Compile Include="MatchException.cs" />
     <Compile Include="Token\AddSub.cs" />
     <Compile Include="Token\CloseParenthesis.cs" />
+    <Compile Include="Token\Equals.cs" />
     <Compile Include="Token\Float.cs" />
     <Compile Include="Token\Integer.cs" />
     <Compile Include="Token\Number.cs" />

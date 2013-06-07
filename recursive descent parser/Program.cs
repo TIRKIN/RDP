@@ -10,15 +10,8 @@ namespace recursive_descent_parser
     {               
         static void Main(string[] args)
         {
-            Console.WriteLine("Invoer: " + args[0]); 
-            int i = 0;                              
-            char[] invoer = new char[args[0].Length];
-            foreach (char c in args[0])           
-            {
-                invoer[i] = c;
-                i++;
-            }
-            Parser p = new Parser(invoer);
+            Console.WriteLine("Invoer: " + args[0]);         
+            Parser p = new Parser(args[0]);
             p.parse();
         }
 

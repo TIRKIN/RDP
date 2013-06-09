@@ -9,5 +9,7 @@ namespace LexicalAnalyzer.Token
     public class AddSub : AbstractToken
     {
         public AddSub(String Value) : base(Value) {}
+
+        public AddSub(String Value, int Postion) : base(Value, Postion) { }
     }
 }

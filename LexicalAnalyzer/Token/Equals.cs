@@ -9,5 +9,7 @@ namespace LexicalAnalyzer.Token
     public class Equals : AbstractToken
     {
         public Equals(String Value) : base(Value) {}
+
+        public Equals(String Value, int Postion) : base(Value, Postion) { }
     }
 }

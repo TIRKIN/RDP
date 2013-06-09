@@ -9,5 +9,7 @@ namespace LexicalAnalyzer.Token
     public class Operator : AbstractToken
     {
         public Operator(String Value) :base(Value) { }
+
+        public Operator(String Value, int Postion) : base(Value, Postion) { }
     }
 }

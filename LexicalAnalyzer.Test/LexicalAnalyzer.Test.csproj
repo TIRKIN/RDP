@@ -46,8 +46,10 @@
     <Compile Include="LexicalScannerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TokenTest\AddSubTest.cs" />
+    <Compile Include="TokenTest\EqualsTest.cs" />
     <Compile Include="TokenTest\FloatTest.cs" />
     <Compile Include="TokenTest\IntegerTest.cs" />
+    <Compile Include="TokenTest\OperatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

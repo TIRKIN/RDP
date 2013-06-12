@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace recursive_descent_parser
 {
-    class Parser
+    public class Parser
     {
         private char[] invoer;
         private int teken = 0;

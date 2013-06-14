@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LexicalAnalyzer;
 using LexicalAnalyzer.Token;
+using recursive_descent_parser.ParseTree;
 
 
 namespace recursive_descent_parser
@@ -13,9 +14,12 @@ namespace recursive_descent_parser
     {
         LexicalScanner lex;
         AbstractToken current;
+        ParseNode start = new ParseNode("S");
+        ParseNode CurrentNode;
         public Parser(String invoer)
         {
             lex = new LexicalScanner(invoer);
+            CurrentNode = start;
         }
 
         public void parse()

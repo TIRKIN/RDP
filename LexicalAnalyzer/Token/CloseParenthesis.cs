@@ -9,5 +9,7 @@ namespace LexicalAnalyzer.Token
     public class CloseParenthesis : AbstractToken
     {
         public CloseParenthesis(String Value) :base(Value) { }
+
+        public CloseParenthesis(String Value, int Postion) : base(Value, Postion) { }
     }
 }

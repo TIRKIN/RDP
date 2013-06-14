@@ -9,7 +9,7 @@ using LexicalAnalyzer.Token;
 
 namespace recursive_descent_parser
 {
-    class Parser
+    public class Parser
     {
         LexicalScanner lex;
         AbstractToken current;

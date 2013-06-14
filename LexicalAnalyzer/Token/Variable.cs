@@ -9,5 +9,7 @@ namespace LexicalAnalyzer.Token
     public class Variable : AbstractToken
     {
         public Variable(String Value) :base(Value) { }
+
+        public Variable(String Value, int Postion) : base(Value, Postion) { }
     }
 }

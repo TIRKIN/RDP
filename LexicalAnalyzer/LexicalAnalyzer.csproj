@@ -50,9 +50,10 @@
     <Compile Include="Token\Number.cs" />
     <Compile Include="Token\OpenParenthesis.cs" />
     <Compile Include="Token\Operator.cs" />
-    <Compile Include="Token\Token.cs" />
+    <Compile Include="Token\AbstractToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Token\Variable.cs" />
+    <Compile Include="Token\WhiteSpace.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

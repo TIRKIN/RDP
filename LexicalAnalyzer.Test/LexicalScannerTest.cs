@@ -152,5 +152,15 @@ namespace LexicalAnalyzer.Test
 
             Assert.AreEqual(9, tokens.Count);
         }
+
+        [Test]
+        public void TestPolynomialMixedSpacesEqualsExpression()
+        {
+            LexicalScanner scanner = new LexicalScanner("4 = 1^2 + 4*x \\22.8");
+
+            List<AbstractToken> tokens = scanner.GetAllTokens() as List<AbstractToken>;
+
+            Assert.AreEqual(11, tokens.Count);
+        }
     }
 }

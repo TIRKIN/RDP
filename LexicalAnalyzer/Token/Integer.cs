@@ -9,5 +9,7 @@ namespace LexicalAnalyzer.Token
     public class Integer : Number
     {
         public Integer(String Value) : base(Value) { }
+
+        public Integer(String Value, int Postion) : base(Value, Postion) { }
     }
 }

@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace LexicalAnalyzer.Token
 {
-    public class Float : Number
+    public class WhiteSpace
     {
-        public Float(String Value) : base(Value) { } 
-
-        public Float(String Value, int Postion) : base(Value, Postion) { }
     }
 }

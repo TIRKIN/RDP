@@ -41,10 +41,14 @@ namespace LexicalAnalyzer
                 {
                     _counter += match.Value.Length;
 
-                    // Create new instance of the specified type with the found value as parameter
-                    AbstractToken token = (AbstractToken) Activator.CreateInstance(pair.Key, new object[] {match.Value.Trim()}, null);
+                    if (pair.Key.IsSubclassOf(typeof(AbstractToken)))
+                    {
+                        // Create new instance of the specified type with the found value as parameter
+                        AbstractToken token = (AbstractToken)Activator.CreateInstance(pair.Key, new object[] { match.Value, _counter - match.Value.Length }, null);
 
-                    return token;
+                        return token;    
+                    }
+
                 }
             }
 

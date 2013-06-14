@@ -50,29 +50,34 @@ namespace recursive_descent_parser.ParseTree
             return value;
         }
 
+        public String GetEnum()
+        {
+            return e.ToString();
+        }
+
         public String toString()
         {
-            String res = "Parent: " + parent.GetValue();
+            String res = "Parent: " + parent.GetEnum();
+            res += "\nCurrent: " + GetEnum();
             res += "\nChildren: ";
-            this.getChildren().ForEach(x => res += ":" + x.GetValue() + ":");
+            this.getChildren().ForEach(x => res += ":" + x.GetEnum() + ":");
             return res;
         }
 
         public String printChildren() 
         {
             String res = "\n";
-            this.getChildren().ForEach(x => res += ":" + x.GetValue() + ":");
+            this.getChildren().ForEach(x => res += ":" + x.GetEnum() + ":");
             return res;
         }
 
-        public String printTree()
+        public void printTree()
         {
-            String res = e.ToString();
             foreach (ParseNode x in this.getChildren())
             {
-                res += x.printTree();
+                Console.WriteLine(x.printChildren());
+                x.printTree();
             }                     
-            return res;
         }
     }
 }

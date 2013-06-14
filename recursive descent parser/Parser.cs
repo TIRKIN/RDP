@@ -34,7 +34,7 @@ namespace recursive_descent_parser
                 Console.WriteLine(me.Message);
             }
             Console.WriteLine("Klaar met parsen.");
-            Console.WriteLine(start.printTree());
+            start.printTree();
             Console.ReadLine();                    
         }
 
@@ -72,6 +72,10 @@ namespace recursive_descent_parser
                     expacc();
                 }
             }
+            else
+            {
+                CurrentNode.AddChild(new ParseNode(ParseEnum.Empty));
+            }
             CurrentNode = CurrentNode.GetParent();
         }
 
@@ -96,6 +100,10 @@ namespace recursive_descent_parser
                     current = lex.GetNextToken();
                     factor();
                     termacc();
+                }
+                else
+                {
+                    CurrentNode.AddChild(new ParseNode(ParseEnum.Empty));
                 }
             }
             CurrentNode = CurrentNode.GetParent();

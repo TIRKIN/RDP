@@ -19,6 +19,7 @@ namespace recursive_descent_parser.ParseTree
         OpenParenthesis,
         CloseParenthesis,
         Equals,
-        Variable
+        Variable,
+        Empty
     }
 }

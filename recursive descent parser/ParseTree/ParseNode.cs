@@ -11,9 +11,16 @@ namespace recursive_descent_parser.ParseTree
         protected List<ParseNode> children = new List<ParseNode>();
         protected ParseNode parent;
         protected String value;
+        protected ParseEnum e;
 
-        public ParseNode(String value) 
+        public ParseNode(ParseEnum e)       
         {
+            this.e = e;
+        }
+
+        public ParseNode(ParseEnum e, String value) 
+        {
+            this.e = e;
             this.value = value;
         }
 
@@ -24,7 +31,8 @@ namespace recursive_descent_parser.ParseTree
 
         public void AddChild(ParseNode child)
         {
-            children.Add(child);
+            child.SetParent(this);
+            children.Add(child);            
         }
 
         public ParseNode GetParent()
@@ -46,7 +54,24 @@ namespace recursive_descent_parser.ParseTree
         {
             String res = "Parent: " + parent.GetValue();
             res += "\nChildren: ";
-            this.getChildren().ForEach(x => res += x.GetValue() + ", ");
+            this.getChildren().ForEach(x => res += ":" + x.GetValue() + ":");
+            return res;
+        }
+
+        public String printChildren() 
+        {
+            String res = "\n";
+            this.getChildren().ForEach(x => res += ":" + x.GetValue() + ":");
+            return res;
+        }
+
+        public String printTree()
+        {
+            String res = e.ToString();
+            foreach (ParseNode x in this.getChildren())
+            {
+                res += x.printTree();
+            }                     
             return res;
         }
     }

@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParseTree\ParseEnum.cs" />
     <Compile Include="ParseTree\ParseNode.cs" />
     <Compile Include="Parser.cs" />
-    <Compile Include="Parser_extended.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

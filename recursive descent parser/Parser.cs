@@ -68,13 +68,8 @@ namespace recursive_descent_parser
                 }
                 else
                 {
-                    term();
-                    expacc();
+                    CurrentNode.AddChild(new ParseNode(ParseEnum.Empty));
                 }
-            }
-            else
-            {
-                CurrentNode.AddChild(new ParseNode(ParseEnum.Empty));
             }
             CurrentNode = CurrentNode.GetParent();
         }
@@ -120,11 +115,11 @@ namespace recursive_descent_parser
                     CurrentNode.AddChild(new ParseNode(ParseEnum.OpenParenthesis));
                     current = lex.GetNextToken();
                     expressie();
-                }
-                else if (current is CloseParenthesis)
-                {
+                    if (current is CloseParenthesis)
+                    {
                     CurrentNode.AddChild(new ParseNode(ParseEnum.CloseParenthesis));
                     current = lex.GetNextToken();
+                    }
                 }
                 else if (current is Variable)
                 {

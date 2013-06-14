@@ -162,5 +162,20 @@ namespace LexicalAnalyzer.Test
 
             Assert.AreEqual(11, tokens.Count);
         }
+
+        [Test]
+        public void TestPolynomialsExpression()
+        {
+            LexicalScanner scanner = new LexicalScanner("(5-2)*3^6+1");
+
+            List<AbstractToken> tokens = new List<AbstractToken>();
+
+            while (!scanner.EndOfInput)
+            {
+                tokens.Add(scanner.GetNextToken());
+            }
+
+            Assert.AreEqual(11, tokens.Count);
+        }
     }
 }

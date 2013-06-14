@@ -56,6 +56,34 @@ namespace LexicalAnalyzer
         }
 
         /// <summary>
+        /// Returns the next character without forwarding the streampointer.
+        /// </summary>
+        /// <returns></returns>
+        public AbstractToken Peek()
+        {
+            // Loop through all tokens and check if they match the input string
+            foreach (KeyValuePair<Type, string> pair in _dictionary)
+            {
+                // TODO: See if substring does not impose a to harsh performance drop
+                Match match = Regex.Match(_input.Substring(_counter), pair.Value);
+
+                if (match.Success)
+                {
+                    if (pair.Key.IsSubclassOf(typeof(AbstractToken)))
+                    {
+                        // Create new instance of the specified type with the found value as parameter
+                        AbstractToken token = (AbstractToken)Activator.CreateInstance(pair.Key, new object[] { match.Value, _counter }, null);
+
+                        return token;
+                    }
+
+                }
+            }
+
+            throw new MatchException(_input[_counter].ToString(CultureInfo.InvariantCulture), _counter);
+        }
+
+        /// <summary>
         /// Checks whether the scanner is at the end of the input.
         /// </summary>
         public bool EndOfInput

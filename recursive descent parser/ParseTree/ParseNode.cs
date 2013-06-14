@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace recursive_descent_parser.ParseTree
 {
-    class ParseNode
+    public class ParseNode
     {
         protected List<ParseNode> children = new List<ParseNode>();
         protected ParseNode parent;

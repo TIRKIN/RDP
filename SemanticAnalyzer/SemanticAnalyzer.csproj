@@ -42,6 +42,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SemanticAnalyzer.cs" />
     <Compile Include="SyntaxTree\ASTNode.cs" />
+    <Compile Include="SyntaxTree\Node\EqualSign.cs" />
+    <Compile Include="SyntaxTree\Node\Number.cs" />
+    <Compile Include="SyntaxTree\Node\Operator.cs" />
+    <Compile Include="SyntaxTree\Node\Variable.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\recursive descent parser\recursive descent parser.csproj">

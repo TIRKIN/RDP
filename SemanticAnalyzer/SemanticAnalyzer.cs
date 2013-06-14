@@ -1,4 +1,5 @@
 ﻿using SemanticAnalyzer.SyntaxTree;
+using SemanticAnalyzer.SyntaxTree.Node;
 using recursive_descent_parser;
 
 namespace SemanticAnalyzer
@@ -8,7 +9,7 @@ namespace SemanticAnalyzer
 
         public SemanticAnalyzer()
         {
-             
+               
         }
 
         public ASTNode GenerateAST()

@@ -8,6 +8,12 @@ namespace SemanticAnalyzer.SyntaxTree.Node
 {
     class Operator : ASTNode
     {
+        private string p;
+
+        public Operator(string value) : base(value)
+        {
+        }
+
         public override ASTNode Eval()
         {
             throw new NotImplementedException();

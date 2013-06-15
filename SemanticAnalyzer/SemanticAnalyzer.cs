@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using SemanticAnalyzer.SyntaxTree;
 using SemanticAnalyzer.SyntaxTree.Node;
 using recursive_descent_parser;
@@ -21,23 +22,39 @@ namespace SemanticAnalyzer
         /// <returns></returns>
         public ASTNode GenerateAST(ParseNode node)
         {
-            Queue<ParseNode> allNodes = new Queue<ParseNode>();
-            Queue<ParseNode> tempQueue= new Queue<ParseNode>();
+            Queue<ParseNode> bfQueue = GetBreadthFirstQueue(node);
 
-            if (node != null)
-            {
-                tempQueue.Enqueue(node);
-                allNodes.Enqueue(node);
 
-                while (tempQueue.Count != 0)
-                {
-                    ParseNode tempNode = tempQueue.Dequeue();
-
-                    tempNode.getChildren().ForEach(x => tempQueue.Enqueue(x));
-                }
-            }
 
             return null;
+        }
+
+        /// <summary>
+        /// Generates a Queue by walking breadth first through the tree.
+        /// </summary>
+        /// <param name="node">Starting node</param>
+        /// <returns>Queue in breadth first order</returns>
+        public Queue<ParseNode> GetBreadthFirstQueue(ParseNode node)
+        {
+            Queue<ParseNode> brQueue = new Queue<ParseNode>();
+            Queue<ParseNode> queue = new Queue<ParseNode>();
+
+            queue.Enqueue(node);
+            brQueue.Enqueue(node);
+
+            while (queue.Count > 0)
+            {
+                ParseNode tempNode = queue.Dequeue();
+
+               foreach (ParseNode parseNode in tempNode.getChildren())
+                {
+                    queue.Enqueue(parseNode);
+                    brQueue.Enqueue(parseNode);
+                }
+
+            }
+
+            return brQueue;
         }
     }
 }

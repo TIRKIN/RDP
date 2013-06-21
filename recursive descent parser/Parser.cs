@@ -22,7 +22,7 @@ namespace recursive_descent_parser
             CurrentNode = start;
         }
 
-        public void parse()
+        public ParseNode parse()
         {
             current = lex.Peek();
             try
@@ -35,7 +35,9 @@ namespace recursive_descent_parser
             }
             Console.WriteLine("Klaar met parsen.");
             start.printTree();
-            Console.ReadLine();                    
+            Console.ReadLine();
+
+            return start;
         }
 
         private  void expressie()

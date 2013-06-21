@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using SemanticAnalyzer.SyntaxTree;
+using SemanticAnalyzer.SyntaxTree.Node;
 using recursive_descent_parser.ParseTree;
 
 namespace SemanticAnalyzer.Test
@@ -42,7 +44,16 @@ namespace SemanticAnalyzer.Test
             var elements = analyzer.GetBreadthFirstQueue(_testTree);
 
             Assert.AreEqual(16, elements.Count);
-            Assert.IsTrue(elements.Peek().GetEnum() == ParseEnum.Start);
+            Assert.IsTrue(elements[0].GetEnum() == ParseEnum.Start);
+        }
+
+        [Test]
+        public void TestASTGeneration()
+        {
+            SemanticAnalyzer analyzer = new SemanticAnalyzer();
+            ASTNode start = analyzer.GenerateAST(_testTree);
+
+            Assert.IsTrue(start.GetType() == typeof (Operator));
         }
     }
 }

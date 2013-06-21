@@ -50,9 +50,9 @@ namespace recursive_descent_parser.ParseTree
             return value;
         }
 
-        public String GetEnum()
+        public ParseEnum GetEnum()
         {
-            return e.ToString();
+            return e;
         }
 
         public String toString()

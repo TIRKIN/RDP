@@ -8,12 +8,6 @@ namespace SemanticAnalyzer
 {
     public class SemanticAnalyzer
     {
-
-        public SemanticAnalyzer()
-        {
-                  
-        }
-
         /// <summary>
         /// Generates a abstract syntrax tree from the given ParseTree
         /// </summary>
@@ -31,33 +25,64 @@ namespace SemanticAnalyzer
             List<ParseNode> bfQueue = GetBreadthFirstQueue(node).FindAll(x => x.GetEnum() == ParseEnum.Operator || x.GetEnum() == ParseEnum.Number 
                 || x.GetEnum() == ParseEnum.Variable || x.GetEnum() == ParseEnum.Equals);
 
+            // If there is only one interesting node no further processing needs to be done.
             if (bfQueue.Count == 1)
             {
                 root = ConvertPNtoASTNode(bfQueue[0]);
             }
             else
             {
-                ParseNode tree = node.getChildren().Find(x => ContainsNode(x, bfQueue[0]));
-
-                root = ConvertPNtoASTNode(bfQueue[0]);
-
-                if (node.getChildren()[0].Equals(tree))
+                // Handle special condition
+                if (bfQueue.Count == 3 &&
+                    !(bfQueue[0].GetEnum() == ParseEnum.Operator || bfQueue[0].GetEnum() == ParseEnum.Equals))
                 {
-                    tree.getChildren().Remove(bfQueue[0]);
-                    root.LeftChild = GenerateAST(tree);
-                    root.RightChild = GenerateAST(node.getChildren()[1]);
+                    ParseNode op =
+                        bfQueue.Find(x => x.GetEnum() == ParseEnum.Operator || x.GetEnum() == ParseEnum.Equals);
+                    bfQueue.Remove(op);
+
+                    if (op.GetEnum() == ParseEnum.Equals)
+                    {
+                        root = new EqualSign(op.GetValue());
+                    }
+                    else
+                    {
+                        root = new Operator(op.GetValue());
+                    }
+
+                    root.LeftChild = ConvertPNtoASTNode(bfQueue[0]);
+                    root.RightChild = ConvertPNtoASTNode(bfQueue[1]);
                 }
                 else
                 {
-                    tree.getChildren().Remove(bfQueue[0]);
-                    root.RightChild = GenerateAST(tree);
-                    root.LeftChild = GenerateAST(node.getChildren()[0]);
+                    // Normal routine
+                    // Handles the left and right tree recursivly
+                    ParseNode subTree = node.getChildren().Find(x => ContainsNode(x, bfQueue[0]));
+
+                    root = ConvertPNtoASTNode(bfQueue[0]);
+
+                    if (node.getChildren()[0].Equals(subTree))
+                    {
+                        subTree.getChildren().Remove(bfQueue[0]);
+                        root.LeftChild = GenerateAST(subTree);
+                        root.RightChild = GenerateAST(node.getChildren()[1]);
+                    }
+                    else
+                    {
+                        subTree.getChildren().Remove(bfQueue[0]);
+                        root.RightChild = GenerateAST(subTree);
+                        root.LeftChild = GenerateAST(node.getChildren()[0]);
+                    }
                 }
             }
 
             return root;
         }
 
+        /// <summary>
+        /// Converts a ParseNode object into it correspondending AST node. Throws an exception when there is no conversion possible.
+        /// </summary>
+        /// <param name="parseNode">Parsenode to be converted</param>
+        /// <returns>AST node</returns>
         private ASTNode ConvertPNtoASTNode(ParseNode parseNode)
         {
             ASTNode ret;

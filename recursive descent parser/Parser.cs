@@ -24,7 +24,7 @@ namespace recursive_descent_parser
 
         public void parse()
         {
-            current = lex.GetNextToken();
+            current = lex.Peek();
             try
             {
                 expressie();

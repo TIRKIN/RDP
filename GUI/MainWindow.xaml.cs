@@ -70,6 +70,11 @@ namespace GUI
             }
         }
 
+        private DrawingNode GenDrawingTree(ASTNode node)
+        {
+               
+        }
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             canvas.Children.Clear();

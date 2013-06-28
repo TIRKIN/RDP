@@ -34,7 +34,7 @@ namespace SemanticAnalyzer
             {
                 // Handle special condition
                 if (bfQueue.Count == 3 &&
-                    !(bfQueue[0].GetEnum() == ParseEnum.Operator || bfQueue[0].GetEnum() == ParseEnum.Equals))
+                    (bfQueue.Find(x => x.GetEnum() == ParseEnum.Operator || x.GetEnum() == ParseEnum.Equals) != null))
                 {
                     ParseNode op =
                         bfQueue.Find(x => x.GetEnum() == ParseEnum.Operator || x.GetEnum() == ParseEnum.Equals);

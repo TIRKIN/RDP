@@ -7,10 +7,11 @@ namespace RecursiveDescentParser
 {
     public class Parser
     {
-        readonly LexicalScanner _lex;
-        AbstractToken _current;
-        readonly ParseNode _start = new ParseNode(ParseEnum.Start);
-        ParseNode _currentNode;
+        private readonly LexicalScanner _lex;
+        private AbstractToken _current;
+        private readonly ParseNode _start = new ParseNode(ParseEnum.Start);
+        private ParseNode _currentNode;
+
         public Parser(String invoer)
         {
             _lex = new LexicalScanner(invoer);
@@ -28,44 +29,45 @@ namespace RecursiveDescentParser
             {
                 Console.WriteLine(me.Message);
             }
-            _start.printTree();
-            Console.ReadLine();
 
             return _start;
         }
 
-        private  void Expressie()
+        private void Expressie()
         {
             _currentNode.AddChild(new ParseNode(ParseEnum.Expression));
             _currentNode = _currentNode.getChildren()[_currentNode.getChildren().Count - 1];
             Term();
             Expacc();
-            _currentNode = _currentNode.GetParent();    
+            _currentNode = _currentNode.GetParent();
         }
 
         private void Expacc()
         {
             _currentNode.AddChild(new ParseNode(ParseEnum.ExpressionAccent));
             _currentNode = _currentNode.getChildren()[_currentNode.getChildren().Count - 1];
-            if (!_lex.EndOfInput)
+            if (_current is AddSub)
             {
-                if (_current is AddSub)
+                _currentNode.AddChild(new ParseNode(ParseEnum.Operator, _current.GetValue()));
+                if (!_lex.EndOfInput)
                 {
-                    _currentNode.AddChild(new ParseNode(ParseEnum.Operator, _current.GetValue()));
                     _current = _lex.GetNextToken();
-                    Term();
-                    Expacc();
                 }
-                else if (_current is Equals)
+                Term();
+                Expacc();
+            }
+            else if (_current is Equals)
+            {
+                _currentNode.AddChild(new ParseNode(ParseEnum.Equals));
+                if (!_lex.EndOfInput)
                 {
-                    _currentNode.AddChild(new ParseNode(ParseEnum.Equals));
                     _current = _lex.GetNextToken();
-                    Expressie();
                 }
-                else
-                {
-                    _currentNode.AddChild(new ParseNode(ParseEnum.Empty));
-                }
+                Expressie();
+            }
+            else
+            {
+                _currentNode.AddChild(new ParseNode(ParseEnum.Empty));
             }
             _currentNode = _currentNode.GetParent();
         }
@@ -79,23 +81,23 @@ namespace RecursiveDescentParser
             _currentNode = _currentNode.GetParent();
         }
 
-        private void Termacc()                           
+        private void Termacc()
         {
             _currentNode.AddChild(new ParseNode(ParseEnum.TermAccent));
             _currentNode = _currentNode.getChildren()[_currentNode.getChildren().Count - 1];
-            if (!_lex.EndOfInput)
+            if (_current is Operator)
             {
-                if (_current is Operator)
+                _currentNode.AddChild(new ParseNode(ParseEnum.Operator, _current.GetValue()));
+                if (!_lex.EndOfInput)
                 {
-                    _currentNode.AddChild(new ParseNode(ParseEnum.Operator, _current.GetValue()));
                     _current = _lex.GetNextToken();
-                    Factor();
-                    Termacc();
                 }
-                else
-                {
-                    _currentNode.AddChild(new ParseNode(ParseEnum.Empty));
-                }
+                Factor();
+                Termacc();
+            }
+            else
+            {
+                _currentNode.AddChild(new ParseNode(ParseEnum.Empty));
             }
             _currentNode = _currentNode.GetParent();
         }
@@ -104,41 +106,43 @@ namespace RecursiveDescentParser
         {
             _currentNode.AddChild(new ParseNode(ParseEnum.Factor));
             _currentNode = _currentNode.getChildren()[_currentNode.getChildren().Count - 1];
-            if (!_lex.EndOfInput)
+            if (_current is OpenParenthesis)
             {
-                if (_current is OpenParenthesis)
+                _currentNode.AddChild(new ParseNode(ParseEnum.OpenParenthesis));
+                _current = _lex.GetNextToken();
+                Expressie();
+                if (_current is CloseParenthesis)
                 {
-                    _currentNode.AddChild(new ParseNode(ParseEnum.OpenParenthesis));
-                    _current = _lex.GetNextToken();
-                    Expressie();
-                    if (_current is CloseParenthesis)
+                    _currentNode.AddChild(new ParseNode(ParseEnum.CloseParenthesis));
+                    if (!_lex.EndOfInput)
                     {
-                        _currentNode.AddChild(new ParseNode(ParseEnum.CloseParenthesis));
-                        if (!_lex.EndOfInput)
-                        {
-                            _current = _lex.GetNextToken();
-                        }
-                        
+                        _current = _lex.GetNextToken();
                     }
-                }               
-                else if (_current is Variable)
-                {
-                    _currentNode.AddChild(new ParseNode(ParseEnum.Variable, _current.GetValue()));
-                    _current = _lex.GetNextToken();
-                }
-                else if (_current is Number)
-                {
-                    _currentNode.AddChild(new ParseNode(ParseEnum.Number, _current.GetValue()));
-                    _current = _lex.GetNextToken();                    
-                }
-                else
-                {
-                    Console.WriteLine("Syntaxfout.");
-                    Stop();
                 }
             }
+            else if (_current is Variable)
+            {
+                _currentNode.AddChild(new ParseNode(ParseEnum.Variable, _current.GetValue()));
+                if (!_lex.EndOfInput)
+                {
+                    _current = _lex.GetNextToken();
+                }
+            }
+            else if (_current is Number)
+            {
+                _currentNode.AddChild(new ParseNode(ParseEnum.Number, _current.GetValue()));
+                if (!_lex.EndOfInput)
+                {
+                    _current = _lex.GetNextToken();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Syntaxfout.");
+                Stop();
+            }
             _currentNode = _currentNode.GetParent();
-        }     
+        }
 
         private void Stop()
         {

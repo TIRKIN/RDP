@@ -43,13 +43,13 @@ namespace RDP.Integration.Test
         [Test]
         public void SimpleExpressionTest()
         {
-            string test = "3+4";
+            string test = "(3+4)*6+1";
             
             Parser parsers = new Parser(test);
             ParseNode parseTree = parsers.Parse();
 
             var analyzer = new SemanticAnalyzer.SemanticAnalyzer();
-            ASTNode AST = analyzer.GenerateAST(_testTree);
+            ASTNode AST = analyzer.GenerateAST(parseTree);
 
             
         }

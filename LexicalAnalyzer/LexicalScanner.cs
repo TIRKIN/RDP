@@ -12,6 +12,10 @@ namespace LexicalAnalyzer
         private int _counter;
         private ExpressionDictionary _dictionary;
 
+        /// <summary>
+        /// Construct a new Lexical Scanner with some input.
+        /// </summary>
+        /// <param name="input">Input string</param>
         public LexicalScanner(string input)
         {
             _input = input;
@@ -29,6 +33,7 @@ namespace LexicalAnalyzer
         /// Throws expection if no token can be found.
         /// </summary>
         /// <returns>Token</returns>
+        /// <exception cref="MatchException">Thrown when the scanner cannot math the input.</exception>
         public AbstractToken GetNextToken()
         {
             // Loop through all tokens and check if they match the input string
@@ -58,7 +63,7 @@ namespace LexicalAnalyzer
         /// <summary>
         /// Returns the next character without forwarding the streampointer.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Token</returns>
         public AbstractToken Peek()
         {
             // Loop through all tokens and check if they match the input string
@@ -91,6 +96,10 @@ namespace LexicalAnalyzer
             get { return (_counter >= (_input.Length)); }
         }
 
+        /// <summary>
+        /// Return all the tokens in the inputstring.
+        /// </summary>
+        /// <returns>List of tokens</returns>
         public ICollection<AbstractToken> GetAllTokens()
         {
            List<AbstractToken> tokens = new List<AbstractToken>();

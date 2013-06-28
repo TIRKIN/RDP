@@ -13,6 +13,21 @@
 
         public abstract ASTNode Eval();
 
+        public override bool Equals(object obj)
+        {
+            if (obj != null && GetType() == obj.GetType())
+            {
+                return Value.Equals(((ASTNode) obj).Value);
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public ASTNode Parent { get; set; }
         
         public ASTNode LeftChild

@@ -1,8 +1,8 @@
 ﻿namespace SemanticAnalyzer.SyntaxTree.Node
 {
-    public class Variable:ASTNode
+    public class Variable : ASTNode
     {
-         public Variable(string value) : base(value)
+        public Variable(string value) : base(value)
         {
         }
 

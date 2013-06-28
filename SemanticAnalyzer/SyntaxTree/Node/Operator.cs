@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SemanticAnalyzer.SyntaxTree.Node
 {
-    class Operator : ASTNode
+    public class Operator : ASTNode
     {
         private string p;
 

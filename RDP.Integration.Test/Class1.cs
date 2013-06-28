@@ -1,17 +1,20 @@
 ﻿using NUnit.Framework;
 using SemanticAnalyzer.SyntaxTree;
 using SemanticAnalyzer.SyntaxTree.Node;
+using recursive_descent_parser;
 using recursive_descent_parser.ParseTree;
+using SemanticAnalyzer;
 
-namespace SemanticAnalyzer.Test
+
+namespace RDP.Integration.Test
 {
     [TestFixture]
-    public class SemanticAnalyzerTest
+    public class IntegrationTest
     {
         private ParseNode _testTree;
 
         [SetUp]
-        public void Init()
+        public void Setup()
         {
             _testTree = new ParseNode(ParseEnum.Start);
             _testTree.AddChild(new ParseNode(ParseEnum.Expression));
@@ -34,26 +37,21 @@ namespace SemanticAnalyzer.Test
             termNode.getChildren()[0].AddChild(new ParseNode(ParseEnum.Number, "4"));
             termNode.getChildren()[1].AddChild(new ParseNode(ParseEnum.Empty));
 
-            node.getChildren()[2].AddChild(new ParseNode(ParseEnum.Empty));
+            node.getChildren()[2].AddChild(new ParseNode(ParseEnum.Empty));    
         }
 
         [Test]
-        public void TestQueueGeneration()
+        public void SimpleExpressionTest()
         {
-            SemanticAnalyzer analyzer = new SemanticAnalyzer();
-            var elements = analyzer.GetBreadthFirstQueue(_testTree);
+            string test = "3+4";
+            
+            Parser parser = new Parser(test);
+            ParseNode parseTree = parser.parse();
 
-            Assert.AreEqual(16, elements.Count);
-            Assert.IsTrue(elements[0].GetEnum() == ParseEnum.Start);
-        }
+            var analyzer = new SemanticAnalyzer.SemanticAnalyzer();
+            ASTNode AST = analyzer.GenerateAST(_testTree);
 
-        [Test]
-        public void TestASTGeneration()
-        {
-            SemanticAnalyzer analyzer = new SemanticAnalyzer();
-            ASTNode start = analyzer.GenerateAST(_testTree);
-
-            Assert.IsTrue(start.GetType() == typeof (Operator));
+            
         }
     }
 }

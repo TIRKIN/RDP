@@ -8,8 +8,7 @@ using SemanticAnalyzer;
 namespace rule_based_inference_engine
 {
     public class TreeIterator
-    {   
-
+    {
         
         private void changeNode(SemanticAnalyzer.SyntaxTree.ASTNode OldNode, SemanticAnalyzer.SyntaxTree.ASTNode NewNode)
         {

@@ -7,8 +7,8 @@
     <ProjectGuid>{2035B56A-908E-42BC-BB53-51992B16E444}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Parser.Test</RootNamespace>
-    <AssemblyName>Parser.Test</AssemblyName>
+    <RootNamespace>RecursiveDescentParser.Test</RootNamespace>
+    <AssemblyName>rdp.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

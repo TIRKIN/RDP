@@ -52,9 +52,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\recursive descent parser\recursive descent parser.csproj">
+    <ProjectReference Include="..\recursive descent parser\RecursiveDescentParser.csproj">
       <Project>{5377e024-b16d-4481-8dbd-68798352fbef}</Project>
-      <Name>recursive descent parser</Name>
+      <Name>RecursiveDescentParser</Name>
     </ProjectReference>
     <ProjectReference Include="..\SemanticAnalyzer\SemanticAnalyzer.csproj">
       <Project>{fa5d8e8f-f127-4baa-aa3b-3b07a65a1f79}</Project>

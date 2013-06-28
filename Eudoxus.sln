@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticAnalyzer.Test", "Se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RDP.Integration.Test", "RDP.Integration.Test\RDP.Integration.Test.csproj", "{C54321D7-3C83-4259-A215-883011768BE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser.Test", "Parser.Test\Parser.Test.csproj", "{2035B56A-908E-42BC-BB53-51992B16E444}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecursiveDescentParser.Test", "Parser.Test\RecursiveDescentParser.Test.csproj", "{2035B56A-908E-42BC-BB53-51992B16E444}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rule based inference engine", "rule based inference engine\rule based inference engine.csproj", "{AB39FDDF-C89B-42D2-BFA7-0E8CF372CC4E}"
 EndProject

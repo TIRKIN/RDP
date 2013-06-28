@@ -2,8 +2,6 @@
 using RecursiveDescentParser;
 using RecursiveDescentParser.ParseTree;
 using SemanticAnalyzer.SyntaxTree;
-using SemanticAnalyzer.SyntaxTree.Node;
-using SemanticAnalyzer;
 
 
 namespace RDP.Integration.Test
@@ -41,17 +39,30 @@ namespace RDP.Integration.Test
         }
 
         [Test]
-        public void SimpleExpressionTest()
+        public void ExpressionTest()
         {
-            string test = "(3+4)*6+1";
+            string test = "(3+4)*6^3+1";
             
             Parser parsers = new Parser(test);
             ParseNode parseTree = parsers.Parse();
 
             var analyzer = new SemanticAnalyzer.SemanticAnalyzer();
             ASTNode AST = analyzer.GenerateAST(parseTree);
-
             
+        }
+
+        [Test]
+        public void SimpleExpressionTest()
+        {
+            string test = "3+4";
+
+            Parser parsers = new Parser(test);
+            ParseNode parseTree = parsers.Parse();
+
+            var analyzer = new SemanticAnalyzer.SemanticAnalyzer();
+            ASTNode AST = analyzer.GenerateAST(parseTree);
+
+
         }
     }
 }

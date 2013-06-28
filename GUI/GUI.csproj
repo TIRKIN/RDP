@@ -68,6 +68,7 @@
     <Compile Include="Controls\VisualNode.xaml.cs">
       <DependentUpon>VisualNode.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DrawingNode.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -72,7 +72,7 @@ namespace GUI
 
         private DrawingNode GenDrawingTree(ASTNode node)
         {
-               
+            return null;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -88,6 +88,11 @@ namespace GUI
             Canvas.SetLeft(node2, (this.canvas.ActualWidth / 2) - 50);
             Canvas.SetTop(node2, 75);
 
+            // Draw a line between the nodes
+            Point centerNode1 = new Point(this.canvas.ActualWidth / 2, node.Height / 2);
+            Point centerNode2 = new Point((this.canvas.ActualWidth / 2) - 50, 75);
+
+
             VisualNode node3 = new VisualNode();
             node3.Text = "4";
             Canvas.SetLeft(node3, (this.canvas.ActualWidth / 2) + 50);
@@ -96,6 +101,16 @@ namespace GUI
             canvas.Children.Add(node);
             canvas.Children.Add(node2);
             canvas.Children.Add(node3);
+            Line lijn = new Line();
+            lijn.X1 = this.canvas.ActualWidth/2 + 25;
+            lijn.X2 = (this.canvas.ActualWidth/2) - 25;
+            lijn.Y1 = 25;
+            lijn.Y2 = 100;
+
+            lijn.Stroke = Brushes.Black;
+            
+            Canvas.SetZIndex(lijn, -1000);
+            canvas.Children.Add(lijn);
         }
     }
 }

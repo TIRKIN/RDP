@@ -1,20 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SemanticAnalyzer;
+using SemanticAnalyzer.SyntaxTree;
+using SemanticAnalyzer.SyntaxTree.Node;
 
 namespace rule_based_inference_engine
 {
     public class TreeIterator
     {
-        
-        private void changeNode(SemanticAnalyzer.SyntaxTree.ASTNode OldNode, SemanticAnalyzer.SyntaxTree.ASTNode NewNode)
-        {
-            OldNode.Parent.LeftChild = NewNode;
-            NewNode.Parent = OldNode.Parent;
 
+        public TreeIterator(ASTNode parent)
+        {
+            while (!CheckChildren(parent))
+            {
+                ASTNode bottom = GetBottom(parent);
+                Variable combination = CombineChildren(bottom);
+                ChangeNode(bottom, combination);
+            }
+            ASTNode finalNode = CombineChildren(parent);
+            Console.Write(finalNode.Value);
+        }
+
+        private void ChangeNode(ASTNode oldNode, ASTNode newNode)
+        {
+            if (oldNode.Parent.LeftChild.Value == oldNode.Value)
+            {
+                oldNode.Parent.LeftChild = newNode;
+            }
+            else
+            {
+                oldNode.Parent.RightChild = newNode;
+            }
+            newNode.Parent = oldNode.Parent;
         }
 
         /*private SemanticAnalyzer.SyntaxTree.ASTNode Operate(SemanticAnalyzer.SyntaxTree.ASTNode operateNode)
@@ -51,29 +66,29 @@ namespace rule_based_inference_engine
             return newNode;
         }*/
 
-        private SemanticAnalyzer.SyntaxTree.ASTNode combineChildren(SemanticAnalyzer.SyntaxTree.ASTNode parent)
+        private Variable CombineChildren(ASTNode parent)
         {
             String newString = parent.LeftChild.Value + parent.Value + parent.RightChild.Value;
-            SemanticAnalyzer.SyntaxTree.Node.Variable newNode = new SemanticAnalyzer.SyntaxTree.Node.Variable(newString);
+            var newNode = new Variable(newString);
             return newNode;
         }
-        
-        
-        private SemanticAnalyzer.SyntaxTree.ASTNode getBottomLeftParent(SemanticAnalyzer.SyntaxTree.ASTNode start) 
-        { 
-            while(!checkLeftChild(start))
+
+
+        private ASTNode GetBottomLeftParent(ASTNode start)
+        {
+            while (!CheckLeftChild(start))
             {
                 start = start.LeftChild;
             }
             return start;
         }
 
-        private SemanticAnalyzer.SyntaxTree.ASTNode getBottom(SemanticAnalyzer.SyntaxTree.ASTNode start)
+        private ASTNode GetBottom(ASTNode start)
         {
-            SemanticAnalyzer.SyntaxTree.ASTNode newNode;
-            while(!checkChildren(start)){
-                newNode = getBottomLeftParent(start);
-                if (checkRightChild(newNode))
+            while (!CheckChildren(start))
+            {
+                ASTNode newNode = GetBottomLeftParent(start);
+                if (CheckRightChild(newNode))
                 {
                     start = newNode;
                 }
@@ -85,66 +100,51 @@ namespace rule_based_inference_engine
             return start;
         }
 
-        private Boolean checkLeftChild(SemanticAnalyzer.SyntaxTree.ASTNode parent)
-        { 
-            if(parent.LeftChild.LeftChild.GetType() == typeof(SemanticAnalyzer.SyntaxTree.Node.Number))
+        private Boolean CheckLeftChild(ASTNode parent)
+        {
+            if (parent.LeftChild.GetType() == typeof (Number))
             {
                 return true;
             }
-            else if (parent.LeftChild.LeftChild.GetType() == typeof(SemanticAnalyzer.SyntaxTree.Node.Variable))
+            if (parent.LeftChild.GetType() == typeof (Variable))
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
-        private Boolean checkRightChild(SemanticAnalyzer.SyntaxTree.ASTNode parent)
+        private static Boolean CheckRightChild(ASTNode parent)
         {
-            if (parent.RightChild.RightChild.GetType() == typeof(SemanticAnalyzer.SyntaxTree.Node.Number))
+            if (parent.RightChild.GetType() == typeof (Number))
             {
                 return true;
             }
-            else if (parent.RightChild.RightChild.GetType() == typeof(SemanticAnalyzer.SyntaxTree.Node.Variable))
+            if (parent.RightChild.GetType() == typeof (Variable))
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
-        private Boolean checkChildren(SemanticAnalyzer.SyntaxTree.ASTNode parent)
+        private Boolean CheckChildren(ASTNode parent)
         {
-            if (parent.LeftChild.LeftChild.GetType() == typeof(SemanticAnalyzer.SyntaxTree.Node.Number))
+            if (parent.LeftChild.GetType() == typeof (Number))
             {
-                if (parent.RightChild.RightChild.GetType() == typeof(SemanticAnalyzer.SyntaxTree.Node.Number))
+                if (CheckRightChild(parent))
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
-            else if (parent.LeftChild.LeftChild.GetType() == typeof(SemanticAnalyzer.SyntaxTree.Node.Variable))
+            if (parent.LeftChild.GetType() == typeof (Variable))
             {
-                if (parent.RightChild.RightChild.GetType() == typeof(SemanticAnalyzer.SyntaxTree.Node.Variable))
+                if (CheckRightChild(parent))
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
                 return false;
             }
+            return false;
         }
     }
 }

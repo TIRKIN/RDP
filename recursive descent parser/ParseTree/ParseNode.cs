@@ -5,76 +5,67 @@ namespace RecursiveDescentParser.ParseTree
 {
     public class ParseNode
     {
-        protected List<ParseNode> children = new List<ParseNode>();
-        protected ParseNode parent;
-        protected String value;
-        protected ParseEnum e;
+        protected List<ParseNode> Children = new List<ParseNode>();
+        protected ParseEnum E;
+        protected ParseNode Parent;
+        protected String Value;
 
-        public ParseNode(ParseEnum e)       
+        public ParseNode(ParseEnum e)
         {
-            this.e = e;
+            this.E = e;
         }
 
-        public ParseNode(ParseEnum e, String value) 
+        public ParseNode(ParseEnum e, String value)
         {
-            this.e = e;
-            this.value = value;
+            this.E = e;
+            this.Value = value;
         }
 
-        public List<ParseNode> getChildren()
+        public List<ParseNode> GetChildren()
         {
-            return children;
+            return Children;
         }
 
         public void AddChild(ParseNode child)
         {
             child.SetParent(this);
-            children.Add(child);            
+            Children.Add(child);
         }
 
         public ParseNode GetParent()
         {
-            return parent;
+            return Parent;
         }
 
-        public void SetParent(ParseNode parent) 
+        public void SetParent(ParseNode parent)
         {
-            this.parent = parent;
+            this.Parent = parent;
         }
 
         public String GetValue()
         {
-            return value;
+            return Value;
         }
 
         public ParseEnum GetEnum()
         {
-            return e;
+            return E;
         }
 
-        public String toString()
-        {
-            String res = "Parent: " + parent.GetEnum();
-            res += "\nCurrent: " + GetEnum();
-            res += "\nChildren: ";
-            this.getChildren().ForEach(x => res += ":" + x.GetEnum() + ":");
-            return res;
-        }
-
-        public String printChildren() 
+        public String PrintChildren()
         {
             String res = "\n";
-            this.getChildren().ForEach(x => res += ":" + x.GetEnum() + ":");
+            GetChildren().ForEach(x => res += ":" + x.GetEnum() + ":");
             return res;
         }
 
-        public void printTree()
+        public void PrintTree()
         {
-            foreach (ParseNode x in this.getChildren())
+            foreach (ParseNode x in GetChildren())
             {
-                Console.WriteLine(x.printChildren());
-                x.printTree();
-            }                     
+                Console.WriteLine(x.PrintChildren());
+                x.PrintTree();
+            }
         }
     }
 }

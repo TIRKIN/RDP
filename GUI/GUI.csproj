@@ -65,6 +65,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Application.cs" />
+    <Compile Include="TreeUtility.cs" />
     <Compile Include="Controls\VisualNode.xaml.cs">
       <DependentUpon>VisualNode.xaml</DependentUpon>
     </Compile>

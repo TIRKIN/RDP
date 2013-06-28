@@ -36,7 +36,7 @@ namespace RecursiveDescentParser
         private void Expressie()
         {
             _currentNode.AddChild(new ParseNode(ParseEnum.Expression));
-            _currentNode = _currentNode.getChildren()[_currentNode.getChildren().Count - 1];
+            _currentNode = _currentNode.GetChildren()[_currentNode.GetChildren().Count - 1];
             Term();
             Expacc();
             _currentNode = _currentNode.GetParent();
@@ -45,7 +45,7 @@ namespace RecursiveDescentParser
         private void Expacc()
         {
             _currentNode.AddChild(new ParseNode(ParseEnum.ExpressionAccent));
-            _currentNode = _currentNode.getChildren()[_currentNode.getChildren().Count - 1];
+            _currentNode = _currentNode.GetChildren()[_currentNode.GetChildren().Count - 1];
             if (_current is AddSub)
             {
                 _currentNode.AddChild(new ParseNode(ParseEnum.Operator, _current.GetValue()));
@@ -75,7 +75,7 @@ namespace RecursiveDescentParser
         private void Term()
         {
             _currentNode.AddChild(new ParseNode(ParseEnum.Term));
-            _currentNode = _currentNode.getChildren()[_currentNode.getChildren().Count - 1];
+            _currentNode = _currentNode.GetChildren()[_currentNode.GetChildren().Count - 1];
             Factor();
             Termacc();
             _currentNode = _currentNode.GetParent();
@@ -84,7 +84,7 @@ namespace RecursiveDescentParser
         private void Termacc()
         {
             _currentNode.AddChild(new ParseNode(ParseEnum.TermAccent));
-            _currentNode = _currentNode.getChildren()[_currentNode.getChildren().Count - 1];
+            _currentNode = _currentNode.GetChildren()[_currentNode.GetChildren().Count - 1];
             if (_current is Operator)
             {
                 _currentNode.AddChild(new ParseNode(ParseEnum.Operator, _current.GetValue()));
@@ -105,7 +105,7 @@ namespace RecursiveDescentParser
         private void Factor()
         {
             _currentNode.AddChild(new ParseNode(ParseEnum.Factor));
-            _currentNode = _currentNode.getChildren()[_currentNode.getChildren().Count - 1];
+            _currentNode = _currentNode.GetChildren()[_currentNode.GetChildren().Count - 1];
             if (_current is OpenParenthesis)
             {
                 _currentNode.AddChild(new ParseNode(ParseEnum.OpenParenthesis));

@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using LexicalAnalyzer;
 using LexicalAnalyzer.Token;
-using RecursiveDescentParser.ParseTree;
+using recursive_descent_parser.ParseTree;
 
-namespace RecursiveDescentParser
+
+namespace recursive_descent_parser
 {
     public class Parser
     {
@@ -113,14 +118,10 @@ namespace RecursiveDescentParser
                     Expressie();
                     if (_current is CloseParenthesis)
                     {
-                        _currentNode.AddChild(new ParseNode(ParseEnum.CloseParenthesis));
-                        if (!_lex.EndOfInput)
-                        {
-                            _current = _lex.GetNextToken();
-                        }
-                        
+                    _currentNode.AddChild(new ParseNode(ParseEnum.CloseParenthesis));
+                    _current = _lex.GetNextToken();
                     }
-                }               
+                }
                 else if (_current is Variable)
                 {
                     _currentNode.AddChild(new ParseNode(ParseEnum.Variable, _current.GetValue()));
@@ -140,7 +141,7 @@ namespace RecursiveDescentParser
             _currentNode = _currentNode.GetParent();
         }     
 
-        private void Stop()
+        private static void Stop()
         {
             Console.ReadLine();
             Environment.Exit(0);

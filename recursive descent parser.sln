@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticAnalyzer", "Semanti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticAnalyzer.Test", "SemanticAnalyzer.Test\SemanticAnalyzer.Test.csproj", "{6AE05262-C5C6-4292-BE21-8E81652547AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rule based inference engine", "rule based inference engine\rule based inference engine.csproj", "{AB39FDDF-C89B-42D2-BFA7-0E8CF372CC4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{6AE05262-C5C6-4292-BE21-8E81652547AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AE05262-C5C6-4292-BE21-8E81652547AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AE05262-C5C6-4292-BE21-8E81652547AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB39FDDF-C89B-42D2-BFA7-0E8CF372CC4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB39FDDF-C89B-42D2-BFA7-0E8CF372CC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB39FDDF-C89B-42D2-BFA7-0E8CF372CC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB39FDDF-C89B-42D2-BFA7-0E8CF372CC4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

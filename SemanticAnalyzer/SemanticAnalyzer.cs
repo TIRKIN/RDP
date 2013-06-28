@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using RecursiveDescentParser.ParseTree;
 using SemanticAnalyzer.SyntaxTree;
 using SemanticAnalyzer.SyntaxTree.Node;
-using recursive_descent_parser.ParseTree;
 
 namespace SemanticAnalyzer
 {

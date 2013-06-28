@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace recursive_descent_parser.ParseTree
+namespace RecursiveDescentParser.ParseTree
 {
     public class ParseNode
     {

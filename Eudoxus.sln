@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recursive descent parser", "recursive descent parser\recursive descent parser.csproj", "{5377E024-B16D-4481-8DBD-68798352FBEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecursiveDescentParser", "recursive descent parser\RecursiveDescentParser.csproj", "{5377E024-B16D-4481-8DBD-68798352FBEF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LexicalAnalyzer", "LexicalAnalyzer\LexicalAnalyzer.csproj", "{34C1B596-A51F-46F7-97CE-9FF24A71A57D}"
 EndProject
@@ -13,7 +13,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticAnalyzer.Test", "Se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RDP.Integration.Test", "RDP.Integration.Test\RDP.Integration.Test.csproj", "{C54321D7-3C83-4259-A215-883011768BE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecursiveDescentParser.Test", "Parser.Test\RecursiveDescentParser.Test.csproj", "{2035B56A-908E-42BC-BB53-51992B16E444}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rule based inference engine", "rule based inference engine\rule based inference engine.csproj", "{AB39FDDF-C89B-42D2-BFA7-0E8CF372CC4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B6A6E029-5773-4019-A207-AB092643CDD6}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +54,10 @@ Global
 		{C54321D7-3C83-4259-A215-883011768BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C54321D7-3C83-4259-A215-883011768BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C54321D7-3C83-4259-A215-883011768BE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2035B56A-908E-42BC-BB53-51992B16E444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2035B56A-908E-42BC-BB53-51992B16E444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2035B56A-908E-42BC-BB53-51992B16E444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2035B56A-908E-42BC-BB53-51992B16E444}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB39FDDF-C89B-42D2-BFA7-0E8CF372CC4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB39FDDF-C89B-42D2-BFA7-0E8CF372CC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB39FDDF-C89B-42D2-BFA7-0E8CF372CC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU

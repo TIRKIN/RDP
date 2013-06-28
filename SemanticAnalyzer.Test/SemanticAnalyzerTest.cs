@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
+using RecursiveDescentParser.ParseTree;
 using SemanticAnalyzer.SyntaxTree;
 using SemanticAnalyzer.SyntaxTree.Node;
-using recursive_descent_parser.ParseTree;
 
 namespace SemanticAnalyzer.Test
 {

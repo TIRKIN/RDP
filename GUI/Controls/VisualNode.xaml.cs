@@ -20,6 +20,9 @@ namespace GUI.Controls
     /// </summary>
     public partial class VisualNode : UserControl
     {
+        private int _breadth;
+        private int _depth;
+
         public VisualNode()
         {
             InitializeComponent();
@@ -29,6 +32,18 @@ namespace GUI.Controls
         {
             get { return this.TextBlock.Text; }
             set { this.TextBlock.Text = value; }
+        }
+
+        public int Breadth
+        {
+            get { return _breadth; }
+            set { _breadth = value; }
+        }
+
+        public int Depth
+        {
+            get { return _depth; }
+            set { _depth = value; }
         }
     }
 }

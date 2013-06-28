@@ -19,7 +19,7 @@ namespace SemanticAnalyzer
             // Skip start node
             if (node.GetEnum() == ParseEnum.Start)
             {
-                node = node.getChildren()[0];
+                node = node.GetChildren()[0];
             }
 
             List<ParseNode> bfQueue = GetBreadthFirstQueue(node).FindAll(x => x.GetEnum() == ParseEnum.Operator || x.GetEnum() == ParseEnum.Number 
@@ -34,7 +34,7 @@ namespace SemanticAnalyzer
             {
                 // Handle special condition
                 if (bfQueue.Count == 3 &&
-                    !(bfQueue[0].GetEnum() == ParseEnum.Operator || bfQueue[0].GetEnum() == ParseEnum.Equals))
+                    (bfQueue.Find(x => x.GetEnum() == ParseEnum.Operator || x.GetEnum() == ParseEnum.Equals) != null))
                 {
                     ParseNode op =
                         bfQueue.Find(x => x.GetEnum() == ParseEnum.Operator || x.GetEnum() == ParseEnum.Equals);
@@ -56,21 +56,21 @@ namespace SemanticAnalyzer
                 {
                     // Normal routine
                     // Handles the left and right tree recursivly
-                    ParseNode subTree = node.getChildren().Find(x => ContainsNode(x, bfQueue[0]));
+                    ParseNode subTree = node.GetChildren().Find(x => ContainsNode(x, bfQueue[0]));
 
                     root = ConvertPNtoASTNode(bfQueue[0]);
 
-                    if (node.getChildren()[0].Equals(subTree))
+                    if (node.GetChildren()[0].Equals(subTree))
                     {
-                        subTree.getChildren().Remove(bfQueue[0]);
+                        subTree.GetChildren().Remove(bfQueue[0]);
                         root.LeftChild = GenerateAST(subTree);
-                        root.RightChild = GenerateAST(node.getChildren()[1]);
+                        root.RightChild = GenerateAST(node.GetChildren()[1]);
                     }
                     else
                     {
-                        subTree.getChildren().Remove(bfQueue[0]);
+                        subTree.GetChildren().Remove(bfQueue[0]);
                         root.RightChild = GenerateAST(subTree);
-                        root.LeftChild = GenerateAST(node.getChildren()[0]);
+                        root.LeftChild = GenerateAST(node.GetChildren()[0]);
                     }
                 }
             }
@@ -125,7 +125,7 @@ namespace SemanticAnalyzer
             {
                 ParseNode tempNode = queue.Dequeue();
 
-               foreach (ParseNode parseNode in tempNode.getChildren())
+               foreach (ParseNode parseNode in tempNode.GetChildren())
                 {
                     queue.Enqueue(parseNode);
                     brQueue.Add(parseNode);
@@ -143,7 +143,7 @@ namespace SemanticAnalyzer
                 return true;
             }
 
-            return startNode.getChildren().Exists(x => ContainsNode(x, nodeToFind));
+            return startNode.GetChildren().Exists(x => ContainsNode(x, nodeToFind));
         }
 
 

@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
+using RecursiveDescentParser;
+using RecursiveDescentParser.ParseTree;
 using SemanticAnalyzer.SyntaxTree;
 using SemanticAnalyzer.SyntaxTree.Node;
-using recursive_descent_parser;
-using recursive_descent_parser.ParseTree;
 using SemanticAnalyzer;
 
 
@@ -45,8 +45,8 @@ namespace RDP.Integration.Test
         {
             string test = "3+4";
             
-            Parser parser = new Parser(test);
-            ParseNode parseTree = parser.parse();
+            Parser parsers = new Parser(test);
+            ParseNode parseTree = parsers.Parse();
 
             var analyzer = new SemanticAnalyzer.SemanticAnalyzer();
             ASTNode AST = analyzer.GenerateAST(_testTree);

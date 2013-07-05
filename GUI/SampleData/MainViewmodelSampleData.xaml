@@ -1,0 +1,12 @@
+<Viewmodel:MainViewmodel xmlns:Viewmodel="clr-namespace:GUI.Viewmodel" xmlns:Imaging="clr-namespace:System.Windows.Media.Imaging;assembly=PresentationCore" xmlns:Windows="clr-namespace:System.Windows;assembly=WindowsBase" xmlns:Cache="clr-namespace:System.Net.Cache;assembly=System">
+	<Viewmodel:MainViewmodel.Image>
+		<Imaging:BitmapImage CreateOptions="PreservePixelFormat" CacheOption="Default" DecodePixelHeight="18" DecodePixelWidth="41" Rotation="Rotate0">
+			<Imaging:BitmapImage.SourceRect>
+				<Windows:Int32Rect Height="27" Width="16" X="58" Y="95"/>
+			</Imaging:BitmapImage.SourceRect>
+			<Imaging:BitmapImage.UriCachePolicy>
+				<Cache:RequestCachePolicy/>
+			</Imaging:BitmapImage.UriCachePolicy>
+		</Imaging:BitmapImage>
+	</Viewmodel:MainViewmodel.Image>
+</Viewmodel:MainViewmodel>
